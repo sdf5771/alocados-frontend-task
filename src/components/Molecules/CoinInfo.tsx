@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import Atoms from 'components/Atoms';
 import {BnBLogo, EthereumLogo, SolanaLogo} from 'assets/icons';
 
