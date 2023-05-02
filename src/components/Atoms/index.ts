@@ -7,6 +7,9 @@ import CoinName from './CoinName';
 import CoinAmount from './CoinAmount';
 import NewLine from './NewLine';
 import Select from './Select';
+import Label from './Label';
+import Ul from './Ul';
+import Li from './Li';
 
 export default {
     Div,
@@ -18,4 +21,7 @@ export default {
     CoinAmount,
     NewLine,
     Select,
+    Label,
+    Ul,
+    Li,
 }

@@ -1,9 +1,21 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Atoms from 'components/Atoms';
 import {SolanaLogo, BnBLogo, EthereumLogo} from 'assets/icons';
 import {DATA_ETH, DATA_BNB, DATA_SOL} from 'constant';
+import {BorderDownArrow} from 'assets/images';
 
 function SelectCoin(){
+    const [inputVal, setInputVal] = useState('');
+    const [visible, setVisible] = useState('none');
+
+    const selectBoxOnClickHandler = (event: React.MouseEvent) => {
+        if(visible == 'none'){
+            setVisible('flex')
+        } else {
+            setVisible('none')
+        }
+    }
+
     return(
         <Atoms.Div display="flex" gap="16px">
             <Atoms.Div display="flex" flexDirection='column' justifyContent='center' width="calc(472px - 28px)" height="calc(56px - 20px)" padding="10px 14px" backgroundColor='#FAFBFC' borderRadius="12px" gap="4px">
@@ -25,10 +37,50 @@ function SelectCoin(){
                     fontSize="18px"
                     lineHeight="178%"
                     color="#313C57"
+                    value={inputVal}
                 />
             </Atoms.Div>
-            <Atoms.Div display="flex" width="calc(147px - 32px)" height="calc(56px - 20px)" padding="10px 16px" backgroundColor='#FAFBFC' borderRadius="12px">
-                
+            <Atoms.Div 
+                display="flex" 
+                position="relative"
+                alignItems='center' 
+                width="calc(147px - 32px)" 
+                height="calc(56px - 20px)" 
+                padding="10px 16px"
+                backgroundColor='#FAFBFC'
+                borderRadius="12px"
+                onClick={selectBoxOnClickHandler}
+                >
+
+                <Atoms.Div display="flex" width="100%" justifyContent='space-between' alignItems='center'>
+                    <Atoms.Div display="flex" alignItems='center' gap="7px">
+                        <DATA_ETH.LogoComponent />
+                        <Atoms.Label>{DATA_ETH.name}</Atoms.Label>
+                    </Atoms.Div>
+                    <BorderDownArrow />
+                </Atoms.Div>
+
+                <Atoms.Ul 
+                    zIndex="10"
+                    display={visible} 
+                    flexDirection='column' 
+                    justifyContent='center'
+                    position="absolute"
+                    width="calc(113px)"
+                    border="1px solid #eaeaea"
+                    padding="10px 16px" 
+                    left="0"
+                    top="60px" 
+                    margin="0" 
+                    gap="10px"
+                    borderRadius="4px"
+                    backgroundColor='#FAFBFC'
+                    >
+                    <Atoms.Li display='flex' cursor="pointer" justifyContent='center' alignItems='center' gap="7px" border="1px solid #eaeaea" borderRadius="4px" padding="5px 10px"><DATA_SOL.LogoComponent /> {DATA_SOL.name}</Atoms.Li>
+                    <Atoms.Li display='flex' cursor="pointer" justifyContent='center' alignItems='center' gap="7px" border="1px solid #eaeaea" borderRadius="4px" padding="5px 10px"><DATA_ETH.LogoComponent /> {DATA_ETH.name}</Atoms.Li>
+                    <Atoms.Li display='flex' cursor="pointer" justifyContent='center' alignItems='center' gap="7px" border="1px solid #eaeaea" borderRadius="4px" padding="5px 10px"><DATA_BNB.LogoComponent /> {DATA_BNB.name}</Atoms.Li>
+                </Atoms.Ul>
+
             </Atoms.Div>
         </Atoms.Div>
     )

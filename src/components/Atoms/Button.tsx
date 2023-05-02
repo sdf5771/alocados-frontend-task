@@ -14,7 +14,7 @@ const Button = styled.button<React.CSSProperties>`
     ${({ marginTop }) => marginTop && `margin-top : ${marginTop}`};
     ${({ marginBottom }) => marginBottom && `margin-bottom : ${marginBottom}`};
     padding: ${({ padding }) => padding};
-    background: ${({ background }) => background || 'white'};
+    background-color: ${({ backgroundColor }) => backgroundColor || 'white'};
     color: ${({ color }) => color};
 
     border: ${({ border }) => border || 'none'};
