@@ -6,6 +6,7 @@ import Title from './Title';
 import CoinName from './CoinName';
 import CoinAmount from './CoinAmount';
 import NewLine from './NewLine';
+import Select from './Select';
 
 export default {
     Div,
@@ -16,4 +17,5 @@ export default {
     CoinName,
     CoinAmount,
     NewLine,
+    Select,
 }

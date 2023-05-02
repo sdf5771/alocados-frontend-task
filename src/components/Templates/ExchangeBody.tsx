@@ -15,6 +15,7 @@ function ExchangeBody(){
                         <Organisms.ExchangeInfo />
                     </Atoms.Div>
                     <Atoms.Div display="flex" flexDirection='column'>
+                        <Organisms.ExchangeForm />
                         <Molecules.CoinExchangeResult />
                     </Atoms.Div>
                 </Atoms.Div>

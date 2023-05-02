@@ -9,13 +9,13 @@ const Input = styled.input<React.CSSProperties & {
     appearance: none;
 
     margin: ${({ margin }) => margin};
-    padding: ${({ padding }) => padding || '8px'};
+    padding: ${({ padding }) => padding};
     line-height: ${({ lineHeight }) => lineHeight};
-    height: ${({ height }) => height || '40px'};
-    width: ${({ width }) => width || '100%'};
-    border: ${({ border }) => border || '1px solid #e8e8e8'};
+    height: ${({ height }) => height};
+    width: ${({ width }) => width};
+    border: ${({ border }) => border};
     box-sizing: border-box;
-    border-radius: ${({ borderRadius }) => borderRadius || '8px'};
+    border-radius: ${({ borderRadius }) => borderRadius};
     background-color: ${({backgroundColor}) => backgroundColor};
     font-size: ${({ fontSize }) => fontSize || '16px'};
 

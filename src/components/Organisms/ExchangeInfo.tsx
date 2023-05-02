@@ -1,6 +1,7 @@
 import React from 'react';
 import Atoms from 'components/Atoms';
 import Molecules from 'components/Molecules';
+import {DATA_ETH, DATA_BNB, DATA_SOL} from 'constant';
 
 function ExchangeInfo(){
     return(
@@ -10,9 +11,9 @@ function ExchangeInfo(){
             </Atoms.Div>
             <Atoms.NewLine />
             <Atoms.Div marginTop="16px" display='flex' flexDirection='column' gap="28px">
-                <Molecules.CoinInfo type="SOL" name="Solana" amount="1,211,023,512.34"/>
-                <Molecules.CoinInfo type="ETH" name="Ethereum" amount="512.01"/>
-                <Molecules.CoinInfo type="BNB" name="BnB" amount="0.35"/>
+                <Molecules.CoinInfo type={DATA_SOL.type} name={DATA_SOL.name} amount={DATA_SOL.amount} logoComponent={<DATA_SOL.LogoComponent />} />
+                <Molecules.CoinInfo type={DATA_ETH.type} name={DATA_ETH.name} amount={DATA_ETH.amount} logoComponent={<DATA_ETH.LogoComponent />} />
+                <Molecules.CoinInfo type={DATA_BNB.type} name={DATA_BNB.name} amount={DATA_BNB.amount} logoComponent={<DATA_BNB.LogoComponent />} />
             </Atoms.Div>
         </Atoms.Div>
     )

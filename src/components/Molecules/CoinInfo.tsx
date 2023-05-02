@@ -1,24 +1,16 @@
 import React from 'react';
 import Atoms from 'components/Atoms';
 import {BnBLogo, EthereumLogo, SolanaLogo} from 'assets/icons';
+import {DATA_ETH, DATA_BNB, DATA_SOL} from 'constant';
 
 type CoinInfoPropsType = {
     type: string;
     name: string;
     amount: string;
+    logoComponent: React.ReactNode;
 }
 
-function CoinInfo({type, name, amount}: CoinInfoPropsType){
-    let logoComponent
-
-    if (type && type === "SOL"){
-        logoComponent = <SolanaLogo />
-    } else if(type && type === "ETH"){
-        logoComponent = <EthereumLogo />
-    } else if(type && type === "BNB"){
-        logoComponent = <BnBLogo />
-    }
-
+function CoinInfo({type, name, amount, logoComponent}: CoinInfoPropsType){
     return(
         <Atoms.Div display="flex" flexDirection='column' gap="1px">
             <Atoms.Div display="flex" alignItems='center' gap="4px" height="36px">

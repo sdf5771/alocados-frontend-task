@@ -1,6 +1,6 @@
 import styled, { CSSProperties } from 'styled-components';
 
-const Title = styled.p<CSSProperties>`
+const Title = styled.h1<CSSProperties>`
     font-family: 'Pretendard';
     font-weight: 700;
     font-size: 22px;
