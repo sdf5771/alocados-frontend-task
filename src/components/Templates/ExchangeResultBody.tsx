@@ -1,8 +1,11 @@
 import React from 'react';
 import Atoms from 'components/Atoms';
 import Molecules from 'components/Molecules';
+import { useRecoilState } from 'recoil';
+import { ExchangeResult } from 'state'
 
 function ExchangeResultBody(){
+    const [exchangeResult, setExchangeResult] = useRecoilState(ExchangeResult)
     return(
         <Atoms.Div width="100%" height="calc(100% - 120px)" display="flex" flexDirection='column' justifyContent='center' alignItems='center'>
             <Atoms.Div display="flex" flexDirection='column'>
@@ -13,7 +16,9 @@ function ExchangeResultBody(){
                     <Molecules.ExchangeResultHeader />
                 </Atoms.Div>
                 <Atoms.Div>
-                    <Molecules.NoData />
+                    {exchangeResult.length !== 0 ? exchangeResult.map((data, index) => {
+                        return <Molecules.NoData />
+                    }) : <Molecules.NoData />}
                 </Atoms.Div>
             </Atoms.Div>
         </Atoms.Div>

@@ -1,5 +1,6 @@
-type coinData = {
-
-}
-
-export default coinData;
+export type TcoinData = {
+    type: string,
+    name: string,
+    amount: number,
+    LogoComponent?: React.FunctionComponent,
+};

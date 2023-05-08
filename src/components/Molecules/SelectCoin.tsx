@@ -1,16 +1,22 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react'
 import Atoms from 'components/Atoms';
 import {SolanaLogo, BnBLogo, EthereumLogo} from 'assets/icons';
 import {DATA_ETH, DATA_BNB, DATA_SOL} from 'constant';
 import {BorderDownArrow} from 'assets/images';
-import {useInput} from 'hook';
+import {useInput, useSetValidState} from 'hook';
 
-function SelectCoin(){
-    const [inputValue, onChangeHandler] = useInput({initialValue: ""});
+type TSelectCoin = {
+    type: "FROM" | "TO",
+}
+
+function SelectCoin({ type } : TSelectCoin){
+    const [thisCoin, setThisCoin] = useState(DATA_ETH);
+    const [inputValue, setInputValue, onChangeHandler] = useInput({initialValue: "", coinType: thisCoin.type, inputType: type});
     const [visible, setVisible] = useState('none');
+    const setValid = useSetValidState();
 
     const selectBoxOnClickHandler = (event: React.MouseEvent) => {
-        if(visible == 'none'){
+        if(visible === 'none'){
             setVisible('flex')
         } else {
             setVisible('none')
@@ -19,12 +25,39 @@ function SelectCoin(){
 
     const listOnClickHandler = (event: React.MouseEvent) => {
         event.preventDefault();
+
+        if(!(event.target instanceof HTMLLIElement)){
+            return
+        }
+
+        if(event.target.dataset['coinName'] === 'Ethereum'){
+            setThisCoin(DATA_ETH);
+            setInputValue('')
+            
+        } else if(event.target.dataset['coinName'] === 'Solana'){
+            setThisCoin(DATA_SOL);
+            setInputValue('')
+        } else if(event.target.dataset['coinName'] === 'BnB'){
+            setThisCoin(DATA_BNB);
+            setInputValue('')
+        }
         
+        setValid(type, false);
     }
 
     return(
         <Atoms.Div display="flex" gap="16px">
-            <Atoms.Div display="flex" flexDirection='column' justifyContent='center' width="calc(472px - 28px)" height="calc(56px - 20px)" padding="10px 14px" backgroundColor='#FAFBFC' borderRadius="12px" gap="4px">
+            <Atoms.Div 
+                display="flex" 
+                border={inputValue === "0" ? "1px solid red" : ""} 
+                flexDirection='column' 
+                justifyContent='center' 
+                width={inputValue === "0" ? "calc(472px - 30px)" : "calc(472px - 28px)"} 
+                height={inputValue === "0" ? "calc(56px - 22px)" : "calc(56px - 20px)"} 
+                padding="10px 14px" 
+                backgroundColor='#FAFBFC' 
+                borderRadius="12px" 
+                gap="4px">
                 <Atoms.Span 
                     width="100%"
                     fontFamily='Pretendard' 
@@ -32,7 +65,7 @@ function SelectCoin(){
                     fontSize="12px"
                     lineHeight="12px"
                     color="#546182"
-                >전환 수량 (FROM)</Atoms.Span>
+                >전환 수량 ({type})</Atoms.Span>
                 <Atoms.Input 
                     width="100%" 
                     height="18px" 
@@ -43,6 +76,7 @@ function SelectCoin(){
                     fontSize="18px"
                     lineHeight="178%"
                     color="#313C57"
+                    placeholder='0'
                     value={inputValue}
                     onChange={onChangeHandler}
                 />
@@ -61,8 +95,8 @@ function SelectCoin(){
 
                 <Atoms.Div display="flex" width="100%" justifyContent='space-between' alignItems='center'>
                     <Atoms.Div display="flex" alignItems='center' gap="7px">
-                        <DATA_ETH.LogoComponent />
-                        <Atoms.Label>{DATA_ETH.name}</Atoms.Label>
+                        <thisCoin.LogoComponent />
+                        <Atoms.Label>{thisCoin.name}</Atoms.Label>
                     </Atoms.Div>
                     <BorderDownArrow />
                 </Atoms.Div>

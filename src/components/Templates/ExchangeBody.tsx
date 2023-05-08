@@ -1,9 +1,13 @@
 import React from 'react';
+import { useRecoilState } from 'recoil';
+import { ExchangeResult } from 'state';
 import Atoms from 'components/Atoms';
 import Molecules from 'components/Molecules';
 import Organisms from 'components/Organisms';
 
 function ExchangeBody(){
+    const [exchangeResult, setExchangeResult] = useRecoilState(ExchangeResult);
+    
     return(
         <Atoms.Div width="100%" height="calc(100% - 120px)" display="flex" justifyContent='center' alignItems='center'>
             <Atoms.Div display="flex" flexDirection='column'>
@@ -16,7 +20,12 @@ function ExchangeBody(){
                     </Atoms.Div>
                     <Atoms.Div display="flex" flexDirection='column'>
                         <Organisms.ExchangeForm />
-                        <Molecules.CoinExchangeResult />
+                        {exchangeResult && exchangeResult.length !== 0 ? 
+                            <Molecules.CoinExchangeResult 
+                                from={exchangeResult.at(-1)?.from} 
+                                to={exchangeResult.at(-1)?.to} 
+                                changeDate="test" /> 
+                                : null}
                     </Atoms.Div>
                 </Atoms.Div>
             </Atoms.Div>

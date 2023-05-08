@@ -2,8 +2,15 @@ import React from 'react';
 import Atoms from 'components/Atoms';
 import {BnBLogo, EthereumLogo, SolanaLogo} from 'assets/icons';
 import {RightArrow} from 'assets/images';
+import { TcoinData } from 'types';
 
-function CoinExchangeResult(){
+type TCoinExchangeResult = {
+    from: TcoinData | undefined,
+    to: TcoinData | undefined,
+    changeDate: Date | string,
+}
+
+function CoinExchangeResult({ from, to, changeDate }: TCoinExchangeResult){
     return(
         <Atoms.Div 
             display='flex'
@@ -25,13 +32,13 @@ function CoinExchangeResult(){
             </Atoms.Div>
             <Atoms.Div display="flex" alignItems='center' gap="32px">
                 <Atoms.Div display="flex" alignItems='center' gap="8px">
-                    <SolanaLogo />
-                    <Atoms.CoinAmount>1,302.44 ETH</Atoms.CoinAmount>
+                    {from && from.LogoComponent ? <from.LogoComponent /> : null}
+                    <Atoms.CoinAmount>1,302.44 {from && from.type}</Atoms.CoinAmount>
                 </Atoms.Div>
                 <RightArrow />
                 <Atoms.Div display="flex" alignItems='center' gap="8px">
-                    <SolanaLogo />
-                    <Atoms.CoinAmount>1,302.44 ETH</Atoms.CoinAmount>
+                    {to && to.LogoComponent ? <to.LogoComponent /> : null}
+                    <Atoms.CoinAmount>1,302.44 {to && to.type}</Atoms.CoinAmount>
                 </Atoms.Div>
             </Atoms.Div>
         </Atoms.Div>
