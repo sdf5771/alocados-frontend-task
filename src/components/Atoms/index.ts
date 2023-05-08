@@ -10,6 +10,7 @@ import Select from './Select';
 import Label from './Label';
 import Ul from './Ul';
 import Li from './Li';
+import ToggleButton from './ToggleButton';
 
 export default {
     Div,
@@ -24,4 +25,5 @@ export default {
     Label,
     Ul,
     Li,
+    ToggleButton,
 }

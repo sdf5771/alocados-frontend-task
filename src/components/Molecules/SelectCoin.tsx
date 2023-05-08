@@ -3,9 +3,10 @@ import Atoms from 'components/Atoms';
 import {SolanaLogo, BnBLogo, EthereumLogo} from 'assets/icons';
 import {DATA_ETH, DATA_BNB, DATA_SOL} from 'constant';
 import {BorderDownArrow} from 'assets/images';
+import {useInput} from 'hook';
 
 function SelectCoin(){
-    const [inputVal, setInputVal] = useState('');
+    const [inputValue, onChangeHandler] = useInput({initialValue: ""});
     const [visible, setVisible] = useState('none');
 
     const selectBoxOnClickHandler = (event: React.MouseEvent) => {
@@ -14,6 +15,11 @@ function SelectCoin(){
         } else {
             setVisible('none')
         }
+    }
+
+    const listOnClickHandler = (event: React.MouseEvent) => {
+        event.preventDefault();
+        
     }
 
     return(
@@ -37,7 +43,8 @@ function SelectCoin(){
                     fontSize="18px"
                     lineHeight="178%"
                     color="#313C57"
-                    value={inputVal}
+                    value={inputValue}
+                    onChange={onChangeHandler}
                 />
             </Atoms.Div>
             <Atoms.Div 
@@ -76,9 +83,48 @@ function SelectCoin(){
                     borderRadius="4px"
                     backgroundColor='#FAFBFC'
                     >
-                    <Atoms.Li display='flex' cursor="pointer" justifyContent='center' alignItems='center' gap="7px" border="1px solid #eaeaea" borderRadius="4px" padding="5px 10px"><DATA_SOL.LogoComponent /> {DATA_SOL.name}</Atoms.Li>
-                    <Atoms.Li display='flex' cursor="pointer" justifyContent='center' alignItems='center' gap="7px" border="1px solid #eaeaea" borderRadius="4px" padding="5px 10px"><DATA_ETH.LogoComponent /> {DATA_ETH.name}</Atoms.Li>
-                    <Atoms.Li display='flex' cursor="pointer" justifyContent='center' alignItems='center' gap="7px" border="1px solid #eaeaea" borderRadius="4px" padding="5px 10px"><DATA_BNB.LogoComponent /> {DATA_BNB.name}</Atoms.Li>
+                    <Atoms.Li 
+                        display='flex' 
+                        cursor="pointer" 
+                        justifyContent='center' 
+                        alignItems='center' 
+                        gap="7px" 
+                        border="1px solid #eaeaea" 
+                        borderRadius="4px" 
+                        padding="5px 10px"
+                        onClick={listOnClickHandler}
+                        data-coin-name={DATA_SOL.name}
+                        >
+                            <DATA_SOL.LogoComponent /> {DATA_SOL.name}
+                    </Atoms.Li>
+                    <Atoms.Li 
+                        display='flex' 
+                        cursor="pointer" 
+                        justifyContent='center' 
+                        alignItems='center' 
+                        gap="7px" 
+                        border="1px solid #eaeaea" 
+                        borderRadius="4px" 
+                        padding="5px 10px"
+                        onClick={listOnClickHandler}
+                        data-coin-name={DATA_ETH.name}
+                        >
+                            <DATA_ETH.LogoComponent /> {DATA_ETH.name}
+                    </Atoms.Li>
+                    <Atoms.Li 
+                        display='flex' 
+                        cursor="pointer" 
+                        justifyContent='center' 
+                        alignItems='center' 
+                        gap="7px" 
+                        border="1px solid #eaeaea" 
+                        borderRadius="4px" 
+                        padding="5px 10px"
+                        onClick={listOnClickHandler}
+                        data-coin-name={DATA_BNB.name}
+                        >
+                            <DATA_BNB.LogoComponent /> {DATA_BNB.name}
+                    </Atoms.Li>
                 </Atoms.Ul>
 
             </Atoms.Div>

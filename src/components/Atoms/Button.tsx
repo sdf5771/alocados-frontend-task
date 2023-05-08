@@ -1,6 +1,13 @@
 import styled from 'styled-components';
 
-const Button = styled.button<React.CSSProperties>`
+const Button = styled.button<React.CSSProperties & {
+    hoverBGColor?: string;
+    hoverFontColor? : string;
+    hoverBorder? : string;
+    isActive? : boolean;
+    activeStyle? : string;
+}
+>`
     display: ${({ display }) => display || 'inline-flex'};
     justify-content: ${({ justifyContent }) => justifyContent || 'center'};
     align-items: ${({ alignItems }) => alignItems || 'center'};
@@ -39,6 +46,11 @@ const Button = styled.button<React.CSSProperties>`
     :focus {
         outline: 0;
         -webkit-appearance: none;
+    }
+    :hover{
+        background-color: ${({hoverBGColor}) => hoverBGColor};
+        color: ${({hoverFontColor}) => hoverFontColor};
+        border: ${({hoverBorder}) => hoverBorder};
     }
 `
 
